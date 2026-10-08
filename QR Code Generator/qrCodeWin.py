@@ -22,7 +22,7 @@ def genQR():
 
 def display_code():
     img_lbl.config(image = img)
-    output.config(text="QR code of" + user_input.get())
+    output.config(text="QR code of: " + user_input.get())
 
 lbl = Label(
     ws,
