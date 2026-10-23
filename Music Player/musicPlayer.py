@@ -15,13 +15,13 @@ paused = False
 selectedFolderPath = ""
 
 def updateProgress():
-    global current_position
+    global currentPosition
     while True:
         if pygame.mixer.music.get_busy() and not paused:
-            current_position = pygame.mixer.music.get_pos() / 1000
-            pbar["value"] = current_position
+            currentPosition = pygame.mixer.music.get_pos() / 1000
+            pbar["value"] = currentPosition
 
-            if current_position >= pbar["maximum"]:
+            if currentPosition >= pbar["maximum"]:
                 stop_music()
                 pbar["value"] = 0
             
@@ -66,13 +66,13 @@ def playMusic():
         playSelectedSong()
 
 def playSelectedSong():
-    global current_position, paused
+    global currentPosition, paused
     if len(lbox.curselection()) > 0:
         current_index = lbox.curselection()[0]
         selected_song = lbox.get(current_index)
         full_path = os.path.join(selected_folder_path, selected_song)
         pygame.mixer.music.load(full_path)
-        pygame.mixer.music.play(start=current_position)
+        pygame.mixer.music.play(start=currentPosition)
         paused = False
         audio = MP3(full_path)
         song_duration = audio.info.length
